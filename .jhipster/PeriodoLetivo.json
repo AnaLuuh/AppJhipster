@@ -1,0 +1,35 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "aula",
+            "otherEntityName": "aula",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "aula",
+            "otherEntityName": "aula",
+            "otherEntityRelationshipName": "periodoLetivo"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "falta",
+            "otherEntityName": "falta",
+            "otherEntityRelationshipName": "periodoLetivo"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "duracao",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20171213235922",
+    "entityTableName": "periodo_letivo",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

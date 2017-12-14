@@ -1,0 +1,41 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "professor",
+            "otherEntityName": "professor",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "disciplina",
+            "otherEntityName": "disciplina",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "entrega",
+            "otherEntityName": "entrega",
+            "otherEntityRelationshipName": "atividade"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "nota",
+            "otherEntityName": "nota",
+            "otherEntityRelationshipName": "atividade"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "prazo",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171213235924",
+    "entityTableName": "atividade",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

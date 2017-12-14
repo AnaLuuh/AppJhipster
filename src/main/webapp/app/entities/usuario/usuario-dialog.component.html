@@ -1,0 +1,44 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myUsuarioLabel">Create or edit a Usuario</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!usuario.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="usuario.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_login">Login</label>
+            <input type="text" class="form-control" name="login" id="field_login"
+                [(ngModel)]="usuario.login" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_permissao">Permissao</label>
+            <select class="form-control" id="field_permissao" name="permissao" [(ngModel)]="usuario.permissao" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="permissaoOption.id === usuario.permissao?.id ? usuario.permissao : permissaoOption" *ngFor="let permissaoOption of permissaos; trackBy: trackPermissaoById">{{permissaoOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_pessoa">Pessoa</label>
+            <select class="form-control" id="field_pessoa" name="pessoa" [(ngModel)]="usuario.pessoa">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="pessoaOption.id === usuario.pessoa?.id ? usuario.pessoa : pessoaOption" *ngFor="let pessoaOption of pessoas; trackBy: trackPessoaById">{{pessoaOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

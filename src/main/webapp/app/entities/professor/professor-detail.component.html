@@ -1,0 +1,32 @@
+
+<div *ngIf="professor">
+    <h2><span>Professor</span> {{professor.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Salario</span></dt>
+        <dd>
+            <span>{{professor.salario}}</span>
+        </dd>
+        <dt><span>Disciplina</span></dt>
+        <dd>
+            <span *ngFor="let disciplina of professor.disciplinas; let last = last">
+                <a [routerLink]="['/disciplina', disciplina?.id ]">{{disciplina.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'professor/'+ professor.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

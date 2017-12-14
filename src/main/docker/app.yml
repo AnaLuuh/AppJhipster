@@ -1,0 +1,14 @@
+version: '2'
+services:
+    teste-app:
+        image: teste
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:sqlserver://teste-mssql:1433;database=jhitest
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    teste-mssql:
+        extends:
+            file: mssql.yml
+            service: teste-mssql

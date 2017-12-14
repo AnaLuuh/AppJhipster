@@ -1,0 +1,32 @@
+
+<div *ngIf="periodoLetivo">
+    <h2><span>Periodo Letivo</span> {{periodoLetivo.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Duracao</span></dt>
+        <dd>
+            <span>{{periodoLetivo.duracao}}</span>
+        </dd>
+        <dt><span>Aula</span></dt>
+        <dd>
+            <div *ngIf="periodoLetivo.aula">
+                <a [routerLink]="['/aula', periodoLetivo.aula?.id]">{{periodoLetivo.aula?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'periodo-letivo/'+ periodoLetivo.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

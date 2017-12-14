@@ -1,0 +1,64 @@
+<div>
+    <h2>
+        <span>Periodo Letivos</span>
+        <button class="btn btn-primary float-right jh-create-entity create-periodo-letivo" [routerLink]="['/', { outlets: { popup: ['periodo-letivo-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Periodo Letivo
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="periodoLetivos">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Duracao</span></th>
+            <th><span>Aula</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let periodoLetivo of periodoLetivos ;trackBy: trackId">
+                <td><a [routerLink]="['../periodo-letivo', periodoLetivo.id ]">{{periodoLetivo.id}}</a></td>
+                <td>{{periodoLetivo.duracao}}</td>
+                <td>
+                    <div *ngIf="periodoLetivo.aula">
+                        <a [routerLink]="['../aula', periodoLetivo.aula?.id ]" >{{periodoLetivo.aula?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../periodo-letivo', periodoLetivo.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'periodo-letivo/'+ periodoLetivo.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'periodo-letivo/'+ periodoLetivo.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+
+entity Permissao {
+tipo String
+}
+entity Usuario {
+login String
+}
+entity Pessoa {
+nome String
+}
+entity Aluno {
+matricula String
+}
+entity Professor {
+salario Double
+}
+entity Falta {
+quantidade Integer
+}
+entity Nota {
+valor Double
+}
+entity Turma {
+descricao String
+}
+entity Disciplina {
+nome String
+}
+entity Aula {
+descricao String
+horario String
+}
+entity PeriodoLetivo {
+duracao Double
+}
+entity Entrega {
+data String
+}
+entity Atividade {
+prazo String
+}
+relationship OneToOne {
+	Usuario{pessoa} to Pessoa
+}
+relationship ManyToMany {
+Professor{disciplina} to Disciplina{professor}
+}
+relationship OneToMany {
+	Permissao{usuario} to Usuario,
+    Disciplina{atividade} to Atividade,
+    Professor{turma} to Turma,
+    Professor{atividade} to Atividade,
+    Aluno{falta} to Falta,
+    Aluno{nota} to Nota, 
+    Aluno{entrega} to Entrega, 
+    Turma{aluno} to Aluno, 
+    Turma{aula} to Aula,
+    PeriodoLetivo{aula} to Aula,
+    PeriodoLetivo{falta} to Falta,
+    Atividade{entrega} to Entrega,
+    Atividade{nota} to Nota, 
+    Aula{falta} to Falta,
+    Aula{turma} to Turma,
+    Aula{periodo} to PeriodoLetivo
+}
+
+
+

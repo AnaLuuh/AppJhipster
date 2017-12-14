@@ -1,0 +1,38 @@
+
+<div *ngIf="atividade">
+    <h2><span>Atividade</span> {{atividade.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Prazo</span></dt>
+        <dd>
+            <span>{{atividade.prazo}}</span>
+        </dd>
+        <dt><span>Professor</span></dt>
+        <dd>
+            <div *ngIf="atividade.professor">
+                <a [routerLink]="['/professor', atividade.professor?.id]">{{atividade.professor?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Disciplina</span></dt>
+        <dd>
+            <div *ngIf="atividade.disciplina">
+                <a [routerLink]="['/disciplina', atividade.disciplina?.id]">{{atividade.disciplina?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'atividade/'+ atividade.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>
